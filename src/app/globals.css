@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+:root {
+  /* Official BJB Growth Palette (Brandbook) */
+  --bjb-casca: #2A211B;
+  --bjb-casca-deep: #211914;
+  --bjb-casca-elevated: #342922;
+  --bjb-linho: #EEE7D8;
+  --bjb-areia: #DDD1B9;
+  --bjb-ocre: #D9A566;
+  --bjb-musgo: #4B4F3A;
+  --bjb-argila: #9A4B30;
+
+  /* Measured comp layout percentages (1376x768) */
+  --r-casca-cross-texture-x: 0.000%;
+  --r-casca-cross-texture-y: 11.720%;
+  --r-casca-cross-texture-w: 13.080%;
+  --r-casca-cross-texture-h: 23.440%;
+
+  --r-atmospheric-veil-x: 25.440%;
+  --r-atmospheric-veil-y: 0.000%;
+  --r-atmospheric-veil-w: 51.600%;
+  --r-atmospheric-veil-h: 66.410%;
+
+  --r-symbol-watermark-x: 71.950%;
+  --r-symbol-watermark-y: 13.020%;
+  --r-symbol-watermark-w: 28.050%;
+  --r-symbol-watermark-h: 60.550%;
+
+  --r-nav-bar-x: 13.880%;
+  --r-nav-bar-y: 3.130%;
+  --r-nav-bar-w: 72.310%;
+  --r-nav-bar-h: 8.590%;
+
+  --r-brand-logo-x: 16.130%;
+  --r-brand-logo-y: 4.430%;
+  --r-brand-logo-w: 8.140%;
+  --r-brand-logo-h: 5.990%;
+
+  --r-kicker-brand-x: 13.660%;
+  --r-kicker-brand-y: 21.610%;
+  --r-kicker-brand-w: 13.230%;
+  --r-kicker-brand-h: 2.600%;
+
+  --r-kicker-index-x: 13.660%;
+  --r-kicker-index-y: 31.900%;
+  --r-kicker-index-w: 14.530%;
+  --r-kicker-index-h: 3.130%;
+
+  --r-kicker-segment-x: 33.280%;
+  --r-kicker-segment-y: 31.900%;
+  --r-kicker-segment-w: 18.750%;
+  --r-kicker-segment-h: 3.130%;
+
+  --r-hero-headline-x: 13.660%;
+  --r-hero-headline-y: 37.240%;
+  --r-hero-headline-w: 50.870%;
+  --r-hero-headline-h: 16.150%;
+
+  --r-hero-subcopy-x: 13.660%;
+  --r-hero-subcopy-y: 54.170%;
+  --r-hero-subcopy-w: 33.720%;
+  --r-hero-subcopy-h: 6.250%;
+
+  --r-hero-cta-x: 13.810%;
+  --r-hero-cta-y: 62.890%;
+  --r-hero-cta-w: 14.390%;
+  --r-hero-cta-h: 5.340%;
+
+  --r-hero-wordmark-x: 0.000%;
+  --r-hero-wordmark-y: 74.480%;
+  --r-hero-wordmark-w: 100.000%;
+  --r-hero-wordmark-h: 21.350%;
+
+  --r-section02-band-x: 0.000%;
+  --r-section02-band-y: 93.100%;
+  --r-section02-band-w: 100.000%;
+  --r-section02-band-h: 6.900%;
+
+  --r-section02-label-x: 10.470%;
+  --r-section02-label-y: 97.270%;
+  --r-section02-label-w: 16.420%;
+  --r-section02-label-h: 2.730%;
+}
+
+html {
+  color-scheme: dark;
+  font-family: "Space Grotesk", sans-serif;
+  background-color: var(--bjb-casca);
+  color: var(--bjb-linho);
+  scrollbar-color: rgba(221, 209, 185, 0.32) #211914;
+  scrollbar-width: thin;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+  background-color: var(--bjb-casca);
+  color: var(--bjb-linho);
+  caret-color: var(--bjb-ocre);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #211914;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(221, 209, 185, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 165, 102, 0.55);
+}
+
+.bjb-cross-ground {
+  background-color: #281918;
+  background-image: url("/assets/plates/casca-cross-texture.png");
+  background-repeat: repeat;
+  background-size: 360px 360px;
+}
+
+/* Brandbook Pattern: Cruzes em Linho */
+.bjb-linho-cross-ground {
+  background-color: #EEE7D8;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Cpath d='M18 14v8M14 18h8' stroke='%232A211B' stroke-opacity='0.11' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 36px 36px;
+}
+
+/* Brandbook Pattern: Pontos de retícula em Areia */
+.bjb-areia-dot-ground {
+  background-color: #DDD1B9;
+  background-image: radial-gradient(rgba(42, 33, 27, 0.16) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.bjb-glass-nav {
+  background: linear-gradient(
+    90deg,
+    rgba(42, 33, 27, 0.72) 0%,
+    rgba(62, 50, 35, 0.56) 50%,
+    rgba(42, 33, 27, 0.74) 100%
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(221, 209, 185, 0.2);
+  box-shadow: 0 18px 40px rgba(15, 10, 8, 0.34);
+}
+
+.bjb-glass-panel {
+  background: linear-gradient(
+    145deg,
+    rgba(42, 33, 27, 0.74) 0%,
+    rgba(33, 25, 20, 0.82) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(221, 209, 185, 0.18);
+  box-shadow: 0 24px 54px rgba(14, 9, 7, 0.38);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

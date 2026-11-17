@@ -1,0 +1,196 @@
+{
+  "version": 2,
+  "project": {
+    "name": "BJB Growth — Institutional Landing Page",
+    "direction": "Estúdio Editorial Atmosférico",
+    "concept": "Experimental Editorial Technology",
+    "language": "pt-BR",
+    "framework": "Next.js 15 App Router + TypeScript + Tailwind CSS v4 + GSAP"
+  },
+  "colors": {
+    "casca": "#2A211B",
+    "cascaCrossGround": "#281918",
+    "cascaDeep": "#211914",
+    "cascaElevated": "#342922",
+    "linho": "#EEE7D8",
+    "areia": "#DDD1B9",
+    "ocre": "#D9A566",
+    "ocreCta": "#D69D63",
+    "ocreCtaHover": "#E5B87E",
+    "musgo": "#4B4F3A",
+    "argila": "#9A4B30",
+    "contrastRatios": {
+      "cascaOnLinho": "12.8:1",
+      "cascaOnAreia": "10.4:1",
+      "cascaOnOcre": "7.2:1",
+      "linhoOnMusgo": "6.9:1",
+      "argilaOnLinho": "5.0:1"
+    },
+    "tonalRamps": {
+      "cascaGround": {
+        "deep": "#211914",
+        "crossGround": "#281918",
+        "base": "#2A211B",
+        "elevated": "#342922"
+      },
+      "parchment": {
+        "linho": "#EEE7D8",
+        "areia": "#DDD1B9"
+      },
+      "accents": {
+        "ocre": "#D9A566",
+        "ocreCta": "#D69D63",
+        "ocreHover": "#E5B87E",
+        "musgo": "#4B4F3A",
+        "argila": "#9A4B30"
+      }
+    }
+  },
+  "typography": {
+    "fontFamily": "Space Grotesk, sans-serif",
+    "weights": [300, 400, 500, 700],
+    "brandCommitmentsNote": "Space Grotesk pinned exclusively by BJB Growth Brandbook; brand lettering remains locked inside brand-logo.png and square icon.png.",
+    "roles": {
+      "heroWordmarkDesktop": {
+        "fontSize": "16.35cqw",
+        "fontWeight": 700,
+        "lineHeight": 0.74,
+        "letterSpacing": "-0.008em",
+        "bottom": "6.05%"
+      },
+      "heroWordmarkMobile": {
+        "fontSize": "15.4vw",
+        "fontWeight": 700,
+        "lineHeight": 0.72,
+        "letterSpacing": "-0.015em",
+        "marginBottom": "-1.8vw"
+      },
+      "footerWordmark": {
+        "fontSize": "14.2vw",
+        "fontWeight": 700,
+        "lineHeight": 0.8,
+        "letterSpacing": "-0.03em"
+      },
+      "heroHeadlineDesktop": {
+        "fontSize": "max(28px, 3.314cqw)",
+        "fontWeight": 500,
+        "lineHeight": 1.12,
+        "letterSpacing": "-0.025em"
+      },
+      "heroHeadlineMobile": {
+        "fontSize": "clamp(2.4rem, 8vw, 3.6rem)",
+        "fontWeight": 500,
+        "lineHeight": 1.06,
+        "letterSpacing": "-0.03em"
+      },
+      "sectionHeading": {
+        "fontSize": "clamp(2rem, 3.6vw, 3.8rem)",
+        "fontWeight": 500,
+        "lineHeight": "1.03 - 1.06",
+        "letterSpacing": "-0.03em to -0.032em"
+      },
+      "bodyCopy": {
+        "fontSize": "15.5px - 17px",
+        "fontWeight": 400,
+        "lineHeight": "1.5 - 1.55"
+      },
+      "technicalLabel": {
+        "fontSize": "11.5px - 14px",
+        "fontWeight": 500,
+        "letterSpacing": "0.04em - 0.06em"
+      }
+    }
+  },
+  "layout": {
+    "maxWidth": "1376px",
+    "heroDesktopCanvas": "aspect-[1376/768] [container-type:inline-size]",
+    "breakpoints": {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px"
+    },
+    "editorialRhythm": [
+      { "id": "topo", "surface": "#281918 (.bjb-cross-ground)", "pattern": "Casca cross grid + atmospheric veil" },
+      { "id": "problemas", "surface": "#EEE7D8 (.bjb-linho-cross-ground)", "pattern": "Cruzes em Linho" },
+      { "id": "solucoes", "surface": "#281918 (.bjb-cross-ground)", "pattern": "Casca cross grid + smoked glass panel" },
+      { "id": "fluxo", "surface": "#211914 (Casca Deep)", "pattern": "Illustrative 4-stage pipeline" },
+      { "id": "metodo", "surface": "#DDD1B9 (.bjb-areia-dot-ground)", "pattern": "Pontos de retícula em Areia + Linho bento" },
+      { "id": "publico", "surface": "#281918 (.bjb-cross-ground)", "pattern": "Audience segments + Musgo #4B4F3A criteria panel" },
+      { "id": "valor", "surface": "#211914 (Casca Deep)", "pattern": "Value metrics & commercial model" },
+      { "id": "equipe", "surface": "#EEE7D8 (.bjb-linho-cross-ground)", "pattern": "Cruzes em Linho + 3 founder & developer cards" },
+      { "id": "diagnostico", "surface": "#281918 (.bjb-cross-ground)", "pattern": "Smoked glass diagnostic intake form" },
+      { "id": "footer", "surface": "#281918 (.bjb-cross-ground)", "pattern": "Monumental wordmark footer" }
+    ]
+  },
+  "elevation": {
+    "glassNav": {
+      "class": ".bjb-glass-nav",
+      "backdropFilter": "blur(18px)",
+      "border": "1px solid rgba(221, 209, 185, 0.2)",
+      "boxShadow": "0 18px 40px rgba(15, 10, 8, 0.34)"
+    },
+    "glassPanel": {
+      "class": ".bjb-glass-panel",
+      "backdropFilter": "blur(20px)",
+      "border": "1px solid rgba(221, 209, 185, 0.18)",
+      "boxShadow": "0 24px 54px rgba(14, 9, 7, 0.38)"
+    },
+    "activePipelineTabShadow": "0 14px 34px rgba(0, 0, 0, 0.35)",
+    "musgoCriteriaPanelShadow": "0 24px 60px rgba(12, 10, 8, 0.45)"
+  },
+  "shapes": {
+    "radius": {
+      "pill": "9999px",
+      "card": "16px",
+      "navbar": "12px",
+      "stage": "12px",
+      "input": "8px"
+    },
+    "brandAssetRules": {
+      "completeLogoPath": "/assets/plates/brand-logo.png",
+      "completeLogoMinWidthPx": 96,
+      "compactMonogramMinWidthPx": 48,
+      "appIconMinPx": 128,
+      "protectionClearance": "0.5x logo height"
+    }
+  },
+  "motion": {
+    "library": "GSAP + ScrollTrigger",
+    "reducedMotionPolicy": "Strict matchMedia('(prefers-reduced-motion: no-preference)') guard; reduced-motion sets instant auto/none.",
+    "behaviors": [
+      "Hero desktop split-line reveal and scroll-scrubbed wordmark lift + atmospheric veil drift",
+      "Problems accordion smooth grid-template-rows + opacity transition (300ms ease-out)",
+      "Services vertical tablist panel swap without hover-stealing",
+      "Pipeline horizontal SVG connector ScrollTrigger scrub",
+      "Method steps subtle stagger reveal"
+    ]
+  },
+  "components": [
+    "Navbar",
+    "HeroSection",
+    "ProblemsSection",
+    "ServicesSection",
+    "PipelineSection",
+    "MethodAndAudienceSection",
+    "TeamSection",
+    "ValueAndConversionSection",
+    "MonumentalFooter",
+    "ArrowIcon"
+  ],
+  "dosAndDonts": {
+    "do": [
+      "Use verified Casca/Linho/Areia/Ocre/Musgo/Argila tokens across all sections.",
+      "Maintain >= 4.5:1 contrast including form placeholders (placeholder:text-[#DDD1B9]/70) and inactive tabs.",
+      "Enforce min-w-[96px] on brand-logo.png across header, scrolled bar, mobile bar, and footer.",
+      "Provide complete roving tabindex keyboard navigation (Arrow keys, Home, End) on tablists and explicit focus return on mobile drawers.",
+      "Mark illustrative flows and metrics clearly as EXEMPLO ILUSTRATIVO."
+    ],
+    "dont": [
+      "Do not invent cool-blue, purple, neon, or unrelated template color palettes.",
+      "Do not add uncomped decorative eyebrows or redundant index numbers above H2 headings.",
+      "Do not stretch, rotate, or re-typeset the BJB brand lettering in Space Grotesk.",
+      "Do not fabricate client logos, testimonials, proven percentages, or contact emails/WhatsApp numbers.",
+      "Do not use Unicode directional arrows instead of ArrowIcon SVG strokes."
+    ]
+  }
+}
