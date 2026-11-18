@@ -6,33 +6,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ensureGsapPlugins, MOTION_QUERIES, scrollToAnchor } from "@/lib/motion";
 
 export function ScrollProgressOrchestrator() {
-  const progressRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     ensureGsapPlugins();
-
-    const mm = gsap.matchMedia();
-    const ctx = gsap.context(() => {
-      mm.add(MOTION_QUERIES.motionAllowed, () => {
-        if (progressRef.current) {
-          gsap.fromTo(
-            progressRef.current,
-            { scaleX: 0 },
-            {
-              scaleX: 1,
-              ease: "none",
-              scrollTrigger: {
-                trigger: document.documentElement,
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 0.25,
-              },
-            }
-          );
-        }
-      });
-    });
 
     // Smooth anchor navigation across the whole page
     const handleAnchorClick = (e: MouseEvent) => {
@@ -120,19 +97,8 @@ export function ScrollProgressOrchestrator() {
       window.removeEventListener("resize", onResize);
       document.removeEventListener("click", handleAnchorClick);
       cleanupCursor?.();
-      ctx.revert();
-      mm.revert();
     };
   }, []);
 
-  return (
-    <>
-      <div
-        ref={progressRef}
-        aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-50 h-[2px] w-full origin-left scale-x-0 bg-[#D9A566]/90"
-      />
-      <div ref={cursorRef} aria-hidden="true" className="bjb-cursor-follower" />
-    </>
-  );
+  return <div ref={cursorRef} aria-hidden="true" className="bjb-cursor-follower" />;
 }

@@ -1,4 +1,5 @@
 import { ScrollProgressOrchestrator } from "@/components/motion/ScrollProgressOrchestrator";
+import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { MethodAndAudienceSection } from "@/components/MethodAndAudienceSection";
 import { MonumentalFooter } from "@/components/MonumentalFooter";
@@ -10,17 +11,20 @@ import { ConversionSection, ValueSection } from "@/components/ValueAndConversion
 
 export default function HomePage() {
   return (
-    <main className="relative w-full overflow-x-clip bg-[#281918]">
+    <>
       <ScrollProgressOrchestrator />
-      <HeroSection />
-      <ProblemsSection />
-      <ServicesSection />
-      <PipelineSection />
-      <MethodAndAudienceSection />
-      <ValueSection />
-      <TeamSection />
-      <ConversionSection />
-      <MonumentalFooter />
-    </main>
+      <Navbar />
+      <main className="relative w-full overflow-x-clip bg-[#281918]">
+        <HeroSection />
+        <ProblemsSection />
+        <ServicesSection />
+        <PipelineSection />
+        <MethodAndAudienceSection />
+        <ValueSection />
+        <TeamSection />
+        <ConversionSection />
+        <MonumentalFooter />
+      </main>
+    </>
   );
 }

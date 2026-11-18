@@ -41,7 +41,7 @@ export function prefersReducedMotion(): boolean {
   return window.matchMedia(MOTION_QUERIES.reducedMotion).matches;
 }
 
-export function scrollToAnchor(href: string, offsetY = 82): boolean {
+export function scrollToAnchor(href: string, offsetY = 88): boolean {
   if (typeof window === "undefined" || !href.startsWith("#")) return false;
   ensureGsapPlugins();
 

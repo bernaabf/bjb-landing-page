@@ -6,7 +6,6 @@ import { BJB_EASE, ensureGsapPlugins, MOTION_QUERIES } from "@/lib/motion";
 import { Magnetic } from "./motion/Magnetic";
 import { RollText } from "./motion/RollText";
 import { SplitReveal } from "./motion/SplitReveal";
-import { Navbar } from "./Navbar";
 
 const WORDMARK_CHARS = "BJB\u00A0GROWTH".split("");
 
@@ -248,8 +247,6 @@ export function HeroSection() {
       className="bjb-cross-ground relative w-full overflow-hidden lg:[container-type:inline-size] lg:aspect-[1376/768]"
       style={{ backgroundPosition: "0px 90px" }}
     >
-      <Navbar />
-
       {/* Atmospheric glow + smoked glass veil plate */}
       <figure
         ref={veilRef}

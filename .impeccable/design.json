@@ -1,196 +1,247 @@
 {
-  "version": 2,
-  "project": {
-    "name": "BJB Growth — Institutional Landing Page",
-    "direction": "Estúdio Editorial Atmosférico",
-    "concept": "Experimental Editorial Technology",
-    "language": "pt-BR",
-    "framework": "Next.js 15 App Router + TypeScript + Tailwind CSS v4 + GSAP"
-  },
-  "colors": {
-    "casca": "#2A211B",
-    "cascaCrossGround": "#281918",
-    "cascaDeep": "#211914",
-    "cascaElevated": "#342922",
-    "linho": "#EEE7D8",
-    "areia": "#DDD1B9",
-    "ocre": "#D9A566",
-    "ocreCta": "#D69D63",
-    "ocreCtaHover": "#E5B87E",
-    "musgo": "#4B4F3A",
-    "argila": "#9A4B30",
-    "contrastRatios": {
-      "cascaOnLinho": "12.8:1",
-      "cascaOnAreia": "10.4:1",
-      "cascaOnOcre": "7.2:1",
-      "linhoOnMusgo": "6.9:1",
-      "argilaOnLinho": "5.0:1"
-    },
-    "tonalRamps": {
-      "cascaGround": {
-        "deep": "#211914",
-        "crossGround": "#281918",
-        "base": "#2A211B",
-        "elevated": "#342922"
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-18T22:34:00.000Z",
+  "title": "Design System: BJB Growth",
+  "extensions": {
+    "colorMeta": {
+      "casca": {
+        "role": "neutral",
+        "displayName": "Casca",
+        "canonical": "#2A211B",
+        "tonalRamp": ["#16110E", "#1F1813", "#2A211B", "#3B2F26", "#534338", "#746154", "#9E8D80", "#CFC5BC"]
       },
-      "parchment": {
-        "linho": "#EEE7D8",
-        "areia": "#DDD1B9"
+      "casca-cross-ground": {
+        "role": "neutral",
+        "displayName": "Hero Cross Ground",
+        "canonical": "#281918",
+        "tonalRamp": ["#150D0C", "#1E1211", "#281918", "#3B2625", "#543A39", "#755857", "#9E8483", "#CFC0BF"]
       },
-      "accents": {
-        "ocre": "#D9A566",
-        "ocreCta": "#D69D63",
-        "ocreHover": "#E5B87E",
-        "musgo": "#4B4F3A",
-        "argila": "#9A4B30"
+      "casca-deep": {
+        "role": "neutral",
+        "displayName": "Casca Deep",
+        "canonical": "#211914",
+        "tonalRamp": ["#110D0A", "#19130F", "#211914", "#32271F", "#493A2F", "#6A584C", "#968579", "#C9BEB6"]
+      },
+      "casca-elevated": {
+        "role": "neutral",
+        "displayName": "Casca Elevated",
+        "canonical": "#342922",
+        "tonalRamp": ["#1B1511", "#261E19", "#342922", "#473930", "#614F44", "#826F63", "#AB9B90", "#D6CBC4"]
+      },
+      "linho": {
+        "role": "neutral",
+        "displayName": "Linho",
+        "canonical": "#EEE7D8",
+        "tonalRamp": ["#3B3730", "#554F45", "#726B5E", "#92897A", "#B2A999", "#D1C9BA", "#EEE7D8", "#F7F3EA"]
+      },
+      "areia": {
+        "role": "neutral",
+        "displayName": "Areia",
+        "canonical": "#DDD1B9",
+        "tonalRamp": ["#383229", "#51493B", "#6D6351", "#8C806A", "#AC9E86", "#C8BA9F", "#DDD1B9", "#EFE8DA"]
+      },
+      "ocre": {
+        "role": "primary",
+        "displayName": "Ocre",
+        "canonical": "#D9A566",
+        "tonalRamp": ["#3D2B14", "#5A3F1D", "#7D5929", "#A2753B", "#C6914F", "#D9A566", "#E8C392", "#F5E2C7"]
+      },
+      "ocre-cta": {
+        "role": "primary",
+        "displayName": "Ocre CTA",
+        "canonical": "#D69D63",
+        "tonalRamp": ["#3C2914", "#583C1D", "#7B552A", "#A0703B", "#C38A4F", "#D69D63", "#E6BC8E", "#F4DEC6"]
+      },
+      "ocre-cta-hover": {
+        "role": "primary",
+        "displayName": "Ocre CTA Hover",
+        "canonical": "#E5B87E",
+        "tonalRamp": ["#3F2F19", "#5C4424", "#7F6034", "#A47D47", "#C79C60", "#E5B87E", "#EFCF9F", "#F7E6CD"]
+      },
+      "musgo": {
+        "role": "secondary",
+        "displayName": "Musgo",
+        "canonical": "#4B4F3A",
+        "tonalRamp": ["#1C1E15", "#292C1F", "#393D2C", "#4B4F3A", "#63684F", "#81866C", "#A7AC95", "#D1D5C6"]
+      },
+      "argila": {
+        "role": "tertiary",
+        "displayName": "Argila",
+        "canonical": "#9A4B30",
+        "tonalRamp": ["#2D140B", "#461F12", "#652E1C", "#853E27", "#9A4B30", "#B96B4F", "#D4967E", "#EBC8BA"]
       }
-    }
-  },
-  "typography": {
-    "fontFamily": "Space Grotesk, sans-serif",
-    "weights": [300, 400, 500, 700],
-    "brandCommitmentsNote": "Space Grotesk pinned exclusively by BJB Growth Brandbook; brand lettering remains locked inside brand-logo.png and square icon.png.",
-    "roles": {
-      "heroWordmarkDesktop": {
-        "fontSize": "16.35cqw",
-        "fontWeight": 700,
-        "lineHeight": 0.74,
-        "letterSpacing": "-0.008em",
-        "bottom": "6.05%"
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display — Space Grotesk",
+        "purpose": "Hero wordmark (16.35cqw / 15.4vw), hero proposition H1, section H2 headings (clamp 2rem–3.8rem, weight 500, tracking -0.03em), and monumental footer wordmark (14.2vw). Brand lettering inside brand-logo.png is never re-typeset."
       },
-      "heroWordmarkMobile": {
-        "fontSize": "15.4vw",
-        "fontWeight": 700,
-        "lineHeight": 0.72,
-        "letterSpacing": "-0.015em",
-        "marginBottom": "-1.8vw"
+      "body": {
+        "displayName": "Body — Space Grotesk",
+        "purpose": "Lead subcopy (16px–17px, weight 400, line-height 1.36–1.55) and editorial copy constrained to 40ch–44ch intro columns."
       },
-      "footerWordmark": {
-        "fontSize": "14.2vw",
-        "fontWeight": 700,
-        "lineHeight": 0.8,
-        "letterSpacing": "-0.03em"
-      },
-      "heroHeadlineDesktop": {
-        "fontSize": "max(28px, 3.314cqw)",
-        "fontWeight": 500,
-        "lineHeight": 1.12,
-        "letterSpacing": "-0.025em"
-      },
-      "heroHeadlineMobile": {
-        "fontSize": "clamp(2.4rem, 8vw, 3.6rem)",
-        "fontWeight": 500,
-        "lineHeight": 1.06,
-        "letterSpacing": "-0.03em"
-      },
-      "sectionHeading": {
-        "fontSize": "clamp(2rem, 3.6vw, 3.8rem)",
-        "fontWeight": 500,
-        "lineHeight": "1.03 - 1.06",
-        "letterSpacing": "-0.03em to -0.032em"
-      },
-      "bodyCopy": {
-        "fontSize": "15.5px - 17px",
-        "fontWeight": 400,
-        "lineHeight": "1.5 - 1.55"
-      },
-      "technicalLabel": {
-        "fontSize": "11.5px - 14px",
-        "fontWeight": 500,
-        "letterSpacing": "0.04em - 0.06em"
+      "mono": {
+        "displayName": "Technical & Tabular — Space Grotesk (tabular-nums)",
+        "purpose": "UI labels, step indices (01–09), method step numerals, and uppercase operational readouts (11.5px–14px, tracking +0.04em to +0.06em)."
       }
-    }
-  },
-  "layout": {
-    "maxWidth": "1376px",
-    "heroDesktopCanvas": "aspect-[1376/768] [container-type:inline-size]",
-    "breakpoints": {
-      "sm": "640px",
-      "md": "768px",
-      "lg": "1024px"
     },
-    "editorialRhythm": [
-      { "id": "topo", "surface": "#281918 (.bjb-cross-ground)", "pattern": "Casca cross grid + atmospheric veil" },
-      { "id": "problemas", "surface": "#EEE7D8 (.bjb-linho-cross-ground)", "pattern": "Cruzes em Linho" },
-      { "id": "solucoes", "surface": "#281918 (.bjb-cross-ground)", "pattern": "Casca cross grid + smoked glass panel" },
-      { "id": "fluxo", "surface": "#211914 (Casca Deep)", "pattern": "Illustrative 4-stage pipeline" },
-      { "id": "metodo", "surface": "#DDD1B9 (.bjb-areia-dot-ground)", "pattern": "Pontos de retícula em Areia + Linho bento" },
-      { "id": "publico", "surface": "#281918 (.bjb-cross-ground)", "pattern": "Audience segments + Musgo #4B4F3A criteria panel" },
-      { "id": "valor", "surface": "#211914 (Casca Deep)", "pattern": "Value metrics & commercial model" },
-      { "id": "equipe", "surface": "#EEE7D8 (.bjb-linho-cross-ground)", "pattern": "Cruzes em Linho + 3 founder & developer cards" },
-      { "id": "diagnostico", "surface": "#281918 (.bjb-cross-ground)", "pattern": "Smoked glass diagnostic intake form" },
-      { "id": "footer", "surface": "#281918 (.bjb-cross-ground)", "pattern": "Monumental wordmark footer" }
-    ]
-  },
-  "elevation": {
-    "glassNav": {
-      "class": ".bjb-glass-nav",
-      "backdropFilter": "blur(18px)",
-      "border": "1px solid rgba(221, 209, 185, 0.2)",
-      "boxShadow": "0 18px 40px rgba(15, 10, 8, 0.34)"
-    },
-    "glassPanel": {
-      "class": ".bjb-glass-panel",
-      "backdropFilter": "blur(20px)",
-      "border": "1px solid rgba(221, 209, 185, 0.18)",
-      "boxShadow": "0 24px 54px rgba(14, 9, 7, 0.38)"
-    },
-    "activePipelineTabShadow": "0 14px 34px rgba(0, 0, 0, 0.35)",
-    "musgoCriteriaPanelShadow": "0 24px 60px rgba(12, 10, 8, 0.45)"
-  },
-  "shapes": {
-    "radius": {
-      "pill": "9999px",
-      "card": "16px",
-      "navbar": "12px",
-      "stage": "12px",
-      "input": "8px"
-    },
-    "brandAssetRules": {
-      "completeLogoPath": "/assets/plates/brand-logo.png",
-      "completeLogoMinWidthPx": 96,
-      "compactMonogramMinWidthPx": 48,
-      "appIconMinPx": 128,
-      "protectionClearance": "0.5x logo height"
-    }
-  },
-  "motion": {
-    "library": "GSAP + ScrollTrigger",
-    "reducedMotionPolicy": "Strict matchMedia('(prefers-reduced-motion: no-preference)') guard; reduced-motion sets instant auto/none.",
-    "behaviors": [
-      "Hero desktop split-line reveal and scroll-scrubbed wordmark lift + atmospheric veil drift",
-      "Problems accordion smooth grid-template-rows + opacity transition (300ms ease-out)",
-      "Services vertical tablist panel swap without hover-stealing",
-      "Pipeline horizontal SVG connector ScrollTrigger scrub",
-      "Method steps subtle stagger reveal"
+    "shadows": [
+      {
+        "name": "glass-nav",
+        "value": "inset 0 1px 0 rgba(238, 231, 216, 0.08), 0 16px 36px rgba(33, 25, 20, 0.36)",
+        "purpose": "Resting top smoked-glass navigation frame over the dark Hero cross grid."
+      },
+      {
+        "name": "glass-nav-scrolled",
+        "value": "inset 0 1px 0 rgba(238, 231, 216, 0.11), 0 20px 44px rgba(33, 25, 20, 0.46)",
+        "purpose": "Scrolled concentric floating capsule maintaining WCAG AA legibility across Linho and Areia breaks."
+      },
+      {
+        "name": "glass-panel",
+        "value": "0 24px 54px rgba(33, 25, 20, 0.42)",
+        "purpose": "Sticky smoked-glass service inspector, pipeline readout, value metrics, and diagnostic conversion form."
+      },
+      {
+        "name": "active-pipeline-tab",
+        "value": "0 14px 34px rgba(0, 0, 0, 0.35)",
+        "purpose": "Elevated active stage card inside the 4-step illustrative pipeline."
+      },
+      {
+        "name": "musgo-criteria-panel",
+        "value": "0 24px 60px rgba(12, 10, 8, 0.45)",
+        "purpose": "Botanical moss pilot-criteria highlight panel in Seção 06."
+      }
+    ],
+    "motion": [
+      {
+        "name": "bjb-editorial",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Primary editorial deceleration for nav shell morph, masked panels, accordion cards, and drawer transitions."
+      },
+      {
+        "name": "bjb-expo",
+        "value": "cubic-bezier(0.19, 1, 0.22, 1)",
+        "purpose": "Crisp expo-out arrival for SplitText lettering reveals, sliding Ocre vernier, and hairline wipes."
+      },
+      {
+        "name": "bjb-tactile",
+        "value": "cubic-bezier(0.25, 0.8, 0.25, 1)",
+        "purpose": "Responsive micro-feedback on magnetic CTAs, bottleneck chips, and tab selections."
+      },
+      {
+        "name": "bjb-scroll",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Smooth ScrollToPlugin anchor navigation curve."
+      },
+      {
+        "name": "reduced-motion-policy",
+        "value": "(prefers-reduced-motion: reduce)",
+        "purpose": "Disables spatial GSAP motion, cursor halo, roll-link translations, and navbar shell transitions while keeping opacity/color state legible."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
     ]
   },
   "components": [
-    "Navbar",
-    "HeroSection",
-    "ProblemsSection",
-    "ServicesSection",
-    "PipelineSection",
-    "MethodAndAudienceSection",
-    "TeamSection",
-    "ValueAndConversionSection",
-    "MonumentalFooter",
-    "ArrowIcon"
+    {
+      "name": "Primary CTA Pill",
+      "kind": "button",
+      "refersTo": "diagnostic-form",
+      "description": "Primary Ocre pill CTA used in navbar, hero, pipeline stepper, and diagnostic submit action.",
+      "html": "<button type=\"button\" class=\"ds-btn-primary\">Solicitar diagnóstico</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 42px; padding: 0 22px; border-radius: 9999px; border: 1px solid rgba(42, 33, 27, 0.25); background: #D69D63; color: #2A211B; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: -0.02em; cursor: pointer; transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover { background: #E5B87E; } .ds-btn-primary:active { transform: scale(0.98); } .ds-btn-primary:focus-visible { outline: 2px solid #EEE7D8; outline-offset: 4px; }"
+    },
+    {
+      "name": "Secondary Ghost Pill",
+      "kind": "button",
+      "refersTo": "pipeline-stepper",
+      "description": "Low-glare Areia outline pill used for secondary navigation and pipeline step reversal.",
+      "html": "<button type=\"button\" class=\"ds-btn-ghost\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" aria-hidden=\"true\"><path d=\"M12 7H2M6 3L2 7L6 11\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"square\"/></svg><span>Etapa anterior</span></button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 9999px; border: 1px solid rgba(221, 209, 185, 0.3); background: rgba(42, 33, 27, 0.65); color: #EEE7D8; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 400; cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; } .ds-btn-ghost:hover { border-color: #D9A566; color: #D9A566; } .ds-btn-ghost:active { transform: scale(0.97); } .ds-btn-ghost:focus-visible { outline: 2px solid #D9A566; outline-offset: 2px; }"
+    },
+    {
+      "name": "Floating Editorial Capsule Navbar",
+      "kind": "nav",
+      "refersTo": "navbar",
+      "description": "Scrolled smoked-glass concentric capsule with 3-column optical grid, active Ocre vernier, and integrated bottom progress hairline.",
+      "html": "<nav class=\"ds-nav-capsule\" aria-label=\"Navegação principal\"><span class=\"ds-nav-brand\">BJB GROWTH</span><div class=\"ds-nav-links\"><a href=\"#solucoes\" class=\"ds-nav-link ds-nav-link--active\">Soluções</a><a href=\"#fluxo\" class=\"ds-nav-link\">Fluxo</a><a href=\"#metodo\" class=\"ds-nav-link\">Método</a><a href=\"#publico\" class=\"ds-nav-link\">Público</a></div><a href=\"#diagnostico\" class=\"ds-nav-cta\">Solicitar diagnóstico</a><span class=\"ds-nav-progress\" aria-hidden=\"true\"></span></nav>",
+      "css": ".ds-nav-capsule { position: relative; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 58px; max-width: 880px; padding: 0 10px 0 20px; border-radius: 9999px; background: linear-gradient(90deg, rgba(33, 25, 20, 0.92) 0%, rgba(42, 33, 27, 0.9) 50%, rgba(33, 25, 20, 0.93) 100%); border: 1px solid rgba(221, 209, 185, 0.24); box-shadow: inset 0 1px 0 rgba(238, 231, 216, 0.11), 0 20px 44px rgba(33, 25, 20, 0.46); font-family: 'Space Grotesk', sans-serif; } .ds-nav-brand { justify-self: start; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: #EEE7D8; } .ds-nav-links { display: flex; align-items: center; gap: 4px; } .ds-nav-link { padding: 6px 14px; border-radius: 9999px; font-size: 14.5px; color: rgba(238, 231, 216, 0.92); text-decoration: none; transition: color 0.2s ease, background-color 0.2s ease; } .ds-nav-link:hover { color: #D9A566; } .ds-nav-link--active { color: #D9A566; background: rgba(238, 231, 216, 0.07); } .ds-nav-link:focus-visible { outline: 2px solid #D9A566; outline-offset: 2px; } .ds-nav-cta { justify-self: end; display: inline-flex; align-items: center; height: 38px; padding: 0 20px; border-radius: 9999px; background: #D69D63; color: #2A211B; font-size: 14px; font-weight: 500; letter-spacing: -0.02em; text-decoration: none; } .ds-nav-cta:hover { background: #E5B87E; } .ds-nav-progress { position: absolute; left: 24px; right: 24px; bottom: 0; height: 1.5px; border-radius: 9999px; background: rgba(217, 165, 102, 0.85); }"
+    },
+    {
+      "name": "Diagnostic Bottleneck Chip",
+      "kind": "chip",
+      "refersTo": "diagnostic-form",
+      "description": "Interactive toggle pill for selecting operational bottlenecks inside the diagnostic form.",
+      "html": "<div class=\"ds-chip-row\"><button type=\"button\" class=\"ds-chip ds-chip--active\" aria-pressed=\"true\"><span class=\"ds-chip-dot\"></span><span>Atendimento sobrecarregado</span></button><button type=\"button\" class=\"ds-chip\" aria-pressed=\"false\"><span class=\"ds-chip-dot\"></span><span>Rotinas manuais</span></button></div>",
+      "css": ".ds-chip-row { display: flex; flex-wrap: wrap; gap: 10px; font-family: 'Space Grotesk', sans-serif; } .ds-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 9999px; border: 1px solid rgba(221, 209, 185, 0.25); background: rgba(33, 25, 20, 0.6); color: #DDD1B9; font-size: 13.5px; font-weight: 500; cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; } .ds-chip:hover { border-color: rgba(221, 209, 185, 0.55); } .ds-chip--active { border-color: #D9A566; background: #D9A566; color: #2A211B; } .ds-chip-dot { width: 6px; height: 6px; border-radius: 9999px; background: rgba(217, 165, 102, 0.65); } .ds-chip--active .ds-chip-dot { background: #2A211B; } .ds-chip:focus-visible { outline: 2px solid #D9A566; outline-offset: 2px; }"
+    },
+    {
+      "name": "Smoked Glass Inspector Panel",
+      "kind": "card",
+      "refersTo": "services-inspector",
+      "description": "Elevated smoked-glass panel displaying active service deliverables or diagnostic confirmation.",
+      "html": "<div class=\"ds-glass-panel\"><div class=\"ds-glass-head\"><span class=\"ds-glass-index\">APLICAÇÃO 01 / 05</span><span class=\"ds-glass-tag\">Sites</span></div><h3 class=\"ds-glass-title\">Landing pages e sistemas digitais</h3><p class=\"ds-glass-copy\">Páginas para captar contatos, formulários, portais e sistemas de gestão sob medida.</p></div>",
+      "css": ".ds-glass-panel { padding: 28px; border-radius: 16px; background: linear-gradient(145deg, rgba(42, 33, 27, 0.74) 0%, rgba(33, 25, 20, 0.82) 100%); border: 1px solid rgba(221, 209, 185, 0.18); box-shadow: 0 24px 54px rgba(33, 25, 20, 0.42); font-family: 'Space Grotesk', sans-serif; color: #EEE7D8; } .ds-glass-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid rgba(221, 209, 185, 0.15); } .ds-glass-index { font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: #D9A566; font-variant-numeric: tabular-nums; } .ds-glass-tag { padding: 2px 12px; border-radius: 9999px; background: #D9A566; color: #2A211B; font-size: 12px; font-weight: 500; } .ds-glass-title { margin: 20px 0 0; font-size: 24px; font-weight: 500; letter-spacing: -0.025em; color: #EEE7D8; } .ds-glass-copy { margin: 12px 0 0; font-size: 15.5px; line-height: 1.55; color: #DDD1B9; }"
+    },
+    {
+      "name": "Diagnostic Form Input",
+      "kind": "input",
+      "refersTo": "diagnostic-form",
+      "description": "High-contrast Casca Deep text field with AA Areia placeholder and Ocre focus ring.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-nome\" class=\"ds-label\">Seu nome</label><input id=\"ds-nome\" type=\"text\" class=\"ds-input\" placeholder=\"Ex.: Mariana Alves\" /></div>",
+      "css": ".ds-field { font-family: 'Space Grotesk', sans-serif; } .ds-label { display: block; font-size: 13.5px; font-weight: 500; color: #EEE7D8; } .ds-input { margin-top: 8px; width: 100%; height: 44px; padding: 0 14px; border-radius: 8px; border: 1px solid rgba(221, 209, 185, 0.25); background: rgba(33, 25, 20, 0.8); color: #EEE7D8; font-size: 15px; transition: border-color 0.2s ease; } .ds-input::placeholder { color: rgba(221, 209, 185, 0.7); } .ds-input:focus { border-color: #D9A566; outline: none; box-shadow: 0 0 0 2px #D9A566; }"
+    },
+    {
+      "name": "Musgo Pilot Criteria Card",
+      "kind": "card",
+      "refersTo": "audience-criteria-card",
+      "description": "Botanical moss criteria panel anchoring the first-pilot qualification checklist.",
+      "html": "<div class=\"ds-musgo-card\"><div class=\"ds-musgo-top\"><span>CRITÉRIOS PARA OS PRIMEIROS PROJETOS</span><span class=\"ds-musgo-badge\">Escopo piloto</span></div><div class=\"ds-musgo-item\"><span class=\"ds-musgo-num\">01</span><span>Problema recorrente e bem definido</span></div></div>",
+      "css": ".ds-musgo-card { padding: 28px; border-radius: 16px; border: 1px solid rgba(221, 209, 185, 0.2); background: #4B4F3A; color: #EEE7D8; box-shadow: 0 24px 60px rgba(12, 10, 8, 0.45); font-family: 'Space Grotesk', sans-serif; } .ds-musgo-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 18px; border-bottom: 1px solid rgba(238, 231, 216, 0.2); font-size: 12.5px; font-weight: 500; letter-spacing: 0.06em; } .ds-musgo-badge { padding: 4px 14px; border-radius: 9999px; background: #EEE7D8; color: #2A211B; font-size: 12px; letter-spacing: 0; } .ds-musgo-item { display: flex; align-items: center; gap: 14px; margin-top: 20px; padding: 14px 18px; border-radius: 12px; border: 1px solid rgba(238, 231, 216, 0.18); background: rgba(42, 33, 27, 0.3); font-size: 15.5px; } .ds-musgo-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 9999px; background: #D9A566; color: #2A211B; font-size: 12.5px; font-weight: 500; font-variant-numeric: tabular-nums; }"
+    }
   ],
-  "dosAndDonts": {
-    "do": [
-      "Use verified Casca/Linho/Areia/Ocre/Musgo/Argila tokens across all sections.",
-      "Maintain >= 4.5:1 contrast including form placeholders (placeholder:text-[#DDD1B9]/70) and inactive tabs.",
-      "Enforce min-w-[96px] on brand-logo.png across header, scrolled bar, mobile bar, and footer.",
-      "Provide complete roving tabindex keyboard navigation (Arrow keys, Home, End) on tablists and explicit focus return on mobile drawers.",
-      "Mark illustrative flows and metrics clearly as EXEMPLO ILUSTRATIVO."
+  "narrative": {
+    "northStar": "Estúdio Editorial Atmosférico",
+    "overview": "A Brazilian Portuguese (pt-BR) editorial technology design system built for BJB Growth (Build · Join · Business). Rather than generic cool-blue/neon AI startup aesthetics, dark mode is derived directly from the official brandbook's organic palette: espresso brown grounds (Casca #2A211B), warm parchment breaks (Linho #EEE7D8 and Areia #DDD1B9), restrained amber interactions (Ocre #D9A566), botanical moss contrast panels (Musgo #4B4F3A), and terracotta numerical accents (Argila #9A4B30).",
+    "keyCharacteristics": [
+      "Editorial Rhythm: Alternates dark architectural cross-grids (Casca) with high-legibility parchment breaks (Linho crosses and Areia dot matrices) so long-form operational content stays scannable without visual fatigue.",
+      "Restrained Smoked Glass: Glassmorphism appears only on navigation (bjb-glass-nav) and inspector/form containers (bjb-glass-panel), never repeated as uniform translucent grids.",
+      "Truth & Honesty: All components, copy, and visual tokens avoid fabricated client rosters, fake ROI metrics, and generic uncomped eyebrow stacks above section headings."
     ],
-    "dont": [
-      "Do not invent cool-blue, purple, neon, or unrelated template color palettes.",
-      "Do not add uncomped decorative eyebrows or redundant index numbers above H2 headings.",
-      "Do not stretch, rotate, or re-typeset the BJB brand lettering in Space Grotesk.",
-      "Do not fabricate client logos, testimonials, proven percentages, or contact emails/WhatsApp numbers.",
-      "Do not use Unicode directional arrows instead of ArrowIcon SVG strokes."
+    "rules": [
+      {
+        "name": "WCAG 2.2 AA Contrast Floor",
+        "body": "Keep every text-over-dark / text-over-light pair at >= 4.5:1 contrast, using placeholder:text-[#DDD1B9]/70 on #211914 inputs and high-density smoked glass over light bands.",
+        "section": "colors"
+      },
+      {
+        "name": "Brand Asset Lock",
+        "body": "Enforce min-w-[96px] (25 mm) on all placements of brand-logo.png and never re-typeset brand lettering in Space Grotesk or any other font.",
+        "section": "typography"
+      },
+      {
+        "name": "Intentional Motion & Reduced-Motion Gate",
+        "body": "Gate GSAP typography/parallax motion behind (prefers-reduced-motion: no-preference) and preserve clear color/opacity state feedback under reduced motion.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Keep every text-over-dark / text-over-light pair at >= 4.5:1 contrast (use placeholder:text-[#DDD1B9]/70 on #211914 inputs and single-layer opacity on inactive tabs).",
+      "Enforce min-w-[96px] (25 mm) on all placements of the complete logo (brand-logo.png).",
+      "Gate GSAP typography/parallax motion behind (prefers-reduced-motion: no-preference).",
+      "Label illustrative workflows and example metrics (EXEMPLO ILUSTRATIVO) unambiguously.",
+      "Implement accessible role=tablist keyboard controls (Arrow*, Home, End, tabIndex) and visible :focus-visible outlines (#D9A566 / #EEE7D8 / #9A4B30)."
+    ],
+    "donts": [
+      "Never invent cool-blue, purple, or neon gradients; stay strictly inside the Casca / Linho / Areia / Ocre / Musgo / Argila palette.",
+      "Never stretch, rotate, recolor off-palette, or re-typeset BUILD JOIN}*& BUSINESS' / B}b' in Space Grotesk or another font.",
+      "Never add decorative eyebrow labels or uncomped section index prefixes above <h2> section headings.",
+      "Never publish fabricated client names, logos, testimonials, proven ROI claims, or placeholder emails/phone numbers.",
+      "Never trigger tab selection on onMouseEnter or substitute raw Unicode arrows where <ArrowIcon /> provides crisp vector strokes."
     ]
   }
 }
