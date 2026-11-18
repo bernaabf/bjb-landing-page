@@ -2,32 +2,86 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { NAV_LINKS } from "@/data/bjb-content";
+import { BJB_EASE, ensureGsapPlugins, MOTION_QUERIES } from "@/lib/motion";
 import { ArrowIcon } from "./ArrowIcon";
+import { Magnetic } from "./motion/Magnetic";
+import { RollText } from "./motion/RollText";
 
-gsap.registerPlugin(ScrollTrigger);
+const FOOTER_WORDMARK_CHARS = "BJB\u00A0GROWTH".split("");
 
 export function MonumentalFooter() {
   const footerRef = useRef<HTMLElement>(null);
-  const wordmarkRef = useRef<HTMLParagraphElement>(null);
+  const watermarkRef = useRef<HTMLDivElement>(null);
+  const wordmarkWrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const footer = footerRef.current;
+    if (!footer) return;
+
+    ensureGsapPlugins();
     const mm = gsap.matchMedia();
     const ctx = gsap.context(() => {
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        if (wordmarkRef.current && footerRef.current) {
-          gsap.from(wordmarkRef.current, {
-            yPercent: 28,
-            duration: 0.9,
-            ease: "power3.out",
+      mm.add(MOTION_QUERIES.motionAllowed, () => {
+        gsap.from(".bjb-footer-col", {
+          y: 18,
+          opacity: 0,
+          duration: 0.72,
+          stagger: 0.08,
+          ease: BJB_EASE.editorial,
+          clearProps: "transform,opacity",
+          scrollTrigger: {
+            trigger: footer,
+            start: "top 82%",
+            once: true,
+          },
+        });
+
+        gsap.from(".bjb-footer-hairline", {
+          scaleX: 0,
+          duration: 0.78,
+          stagger: 0.08,
+          ease: BJB_EASE.expoOut,
+          clearProps: "transform",
+          scrollTrigger: {
+            trigger: footer,
+            start: "top 82%",
+            once: true,
+          },
+        });
+
+        if (wordmarkWrapRef.current) {
+          gsap.from(".bjb-footer-char", {
+            yPercent: 105,
+            stagger: 0.04,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: footerRef.current,
-              start: "top 78%",
-              once: true,
+              trigger: wordmarkWrapRef.current,
+              start: "top bottom",
+              end: "bottom bottom",
+              scrub: 0.5,
             },
-            clearProps: "transform",
           });
+        }
+      });
+
+      mm.add(MOTION_QUERIES.desktopMotion, () => {
+        if (watermarkRef.current) {
+          gsap.fromTo(
+            watermarkRef.current,
+            { yPercent: -16, rotate: -2 },
+            {
+              yPercent: 16,
+              rotate: 2,
+              ease: "none",
+              scrollTrigger: {
+                trigger: footer,
+                start: "top bottom",
+                end: "bottom bottom",
+                scrub: 0.9,
+              },
+            }
+          );
         }
       });
     }, footerRef);
@@ -44,6 +98,7 @@ export function MonumentalFooter() {
       className="bjb-cross-ground relative overflow-hidden border-t border-[#DDD1B9]/18 bg-[#211914] pt-20 text-[#EEE7D8]"
     >
       <div
+        ref={watermarkRef}
         aria-hidden="true"
         className="pointer-events-none absolute -right-12 top-6 h-[320px] w-[260px] opacity-20"
       >
@@ -55,8 +110,8 @@ export function MonumentalFooter() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1376px] px-5 sm:px-8 lg:px-14">
-        <div className="grid grid-cols-1 gap-10 border-b border-[#DDD1B9]/16 pb-14 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+        <div className="relative grid grid-cols-1 gap-10 pb-14 lg:grid-cols-12">
+          <div className="bjb-footer-col lg:col-span-5">
             <img
               src="/assets/plates/brand-logo.png"
               alt="BJB Growth — Build Join Business"
@@ -69,7 +124,7 @@ export function MonumentalFooter() {
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-7">
-            <div>
+            <div className="bjb-footer-col">
               <p className="m-0 text-[12px] font-medium uppercase tracking-[0.06em] text-[#D9A566]">
                 Navegação
               </p>
@@ -77,33 +132,36 @@ export function MonumentalFooter() {
                 <li>
                   <a
                     href="#problemas"
-                    className="text-[#EEE7D8]/90 transition-colors hover:text-[#D9A566] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A566]"
+                    data-cursor="action"
+                    className="bjb-roll-link text-[#EEE7D8]/90 transition-colors hover:text-[#D9A566] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A566]"
                   >
-                    Problemas
+                    <RollText>Problemas</RollText>
                   </a>
                 </li>
                 {NAV_LINKS.map((link) => (
                   <li key={`footer-${link.href}`}>
                     <a
                       href={link.href}
-                      className="text-[#EEE7D8]/90 transition-colors hover:text-[#D9A566] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A566]"
+                      data-cursor="action"
+                      className="bjb-roll-link text-[#EEE7D8]/90 transition-colors hover:text-[#D9A566] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A566]"
                     >
-                      {link.label}
+                      <RollText>{link.label}</RollText>
                     </a>
                   </li>
                 ))}
                 <li>
                   <a
                     href="#equipe"
-                    className="text-[#EEE7D8]/90 transition-colors hover:text-[#D9A566] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A566]"
+                    data-cursor="action"
+                    className="bjb-roll-link text-[#EEE7D8]/90 transition-colors hover:text-[#D9A566] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A566]"
                   >
-                    Equipe
+                    <RollText>Equipe</RollText>
                   </a>
                 </li>
               </ul>
             </div>
 
-            <div>
+            <div className="bjb-footer-col">
               <p className="m-0 text-[12px] font-medium uppercase tracking-[0.06em] text-[#D9A566]">
                 Frentes
               </p>
@@ -115,7 +173,7 @@ export function MonumentalFooter() {
               </ul>
             </div>
 
-            <div className="col-span-2 sm:col-span-1">
+            <div className="bjb-footer-col col-span-2 sm:col-span-1">
               <p className="m-0 text-[12px] font-medium uppercase tracking-[0.06em] text-[#D9A566]">
                 Atendimento
               </p>
@@ -124,37 +182,52 @@ export function MonumentalFooter() {
               </p>
               <a
                 href="#diagnostico"
-                className="mt-4 inline-flex items-center gap-2 text-[14.5px] font-medium text-[#D9A566] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A566]"
+                data-cursor="action"
+                className="bjb-roll-link bjb-arrow-btn bjb-underline-wipe mt-4 inline-flex items-center gap-2 text-[14.5px] font-medium text-[#D9A566] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A566]"
               >
-                <span>Solicitar diagnóstico</span>
-                <ArrowIcon direction="right" />
+                <RollText>Solicitar diagnóstico</RollText>
+                <ArrowIcon direction="right" kinetic />
               </a>
             </div>
           </div>
+
+          <div
+            aria-hidden="true"
+            className="bjb-hairline bjb-footer-hairline absolute bottom-0 left-0 right-0 h-px bg-[#DDD1B9]/16"
+          />
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-4 py-6 text-[12.5px] tracking-[0.04em] text-[#DDD1B9]/80">
           <span>BJB GROWTH · BUILD · JOIN · BUSINESS</span>
           <span>SOLUÇÕES TECNOLÓGICAS PARA EMPRESAS</span>
-          <a
-            href="#topo"
-            className="inline-flex items-center gap-1.5 text-[#D9A566] hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A566]"
-          >
-            <span>Voltar ao topo</span>
-            <ArrowIcon direction="up" />
-          </a>
+          <Magnetic strength={0.18} maxDistance={6}>
+            <a
+              href="#topo"
+              data-cursor="action"
+              className="bjb-roll-link bjb-arrow-btn bjb-underline-wipe inline-flex items-center gap-1.5 text-[#D9A566] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A566]"
+            >
+              <RollText>Voltar ao topo</RollText>
+              <ArrowIcon direction="up" kinetic />
+            </a>
+          </Magnetic>
         </div>
       </div>
 
       <div
+        ref={wordmarkWrapRef}
         aria-hidden="true"
-        className="pointer-events-none select-none overflow-hidden border-t border-[#DDD1B9]/12 pt-3 text-center"
+        className="pointer-events-none relative select-none overflow-hidden pt-3 text-center"
       >
-        <p
-          ref={wordmarkRef}
-          className="m-0 whitespace-nowrap text-[14.2vw] font-bold uppercase leading-[0.8] tracking-[-0.03em] text-[#EEE7D8]/92"
-        >
-          BJB GROWTH
+        <div
+          aria-hidden="true"
+          className="bjb-hairline bjb-footer-hairline absolute left-0 right-0 top-0 h-px bg-[#DDD1B9]/12"
+        />
+        <p className="m-0 whitespace-nowrap text-[14.2vw] font-bold uppercase leading-[0.8] tracking-[-0.03em] text-[#EEE7D8]/92">
+          {FOOTER_WORDMARK_CHARS.map((ch, idx) => (
+            <span key={`f-${idx}`} className="bjb-footer-char inline-block">
+              {ch}
+            </span>
+          ))}
         </p>
       </div>
     </footer>

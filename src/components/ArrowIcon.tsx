@@ -1,9 +1,11 @@
 export function ArrowIcon({
   direction = "right",
   className = "h-3.5 w-3.5 shrink-0",
+  kinetic = false,
 }: {
   direction?: "right" | "left" | "up" | "down";
   className?: string;
+  kinetic?: boolean;
 }) {
   const rotation =
     direction === "left"
@@ -14,7 +16,7 @@ export function ArrowIcon({
           ? "rotate-90"
           : "";
 
-  return (
+  const svgNode = (
     <svg
       width="14"
       height="14"
@@ -30,5 +32,16 @@ export function ArrowIcon({
         strokeLinecap="square"
       />
     </svg>
+  );
+
+  if (!kinetic) {
+    return svgNode;
+  }
+
+  return (
+    <span className="bjb-arrow-swap" data-dir={direction} aria-hidden="true">
+      <span className="bjb-arrow-swap__primary">{svgNode}</span>
+      <span className="bjb-arrow-swap__clone">{svgNode}</span>
+    </span>
   );
 }

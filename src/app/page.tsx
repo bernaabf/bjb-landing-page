@@ -1,3 +1,4 @@
+import { ScrollProgressOrchestrator } from "@/components/motion/ScrollProgressOrchestrator";
 import { HeroSection } from "@/components/HeroSection";
 import { MethodAndAudienceSection } from "@/components/MethodAndAudienceSection";
 import { MonumentalFooter } from "@/components/MonumentalFooter";
@@ -9,7 +10,8 @@ import { ConversionSection, ValueSection } from "@/components/ValueAndConversion
 
 export default function HomePage() {
   return (
-    <main className="relative w-full overflow-x-hidden bg-[#281918]">
+    <main className="relative w-full overflow-x-clip bg-[#281918]">
+      <ScrollProgressOrchestrator />
       <HeroSection />
       <ProblemsSection />
       <ServicesSection />
