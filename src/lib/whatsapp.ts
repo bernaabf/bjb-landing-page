@@ -115,3 +115,38 @@ export function buildWhatsAppUrl(data: ValidatedContactInput): string {
   const message = buildWhatsAppMessage(data);
   return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
 }
+
+export interface DiagnosticResult {
+  ok: boolean;
+  protocolo: string;
+  recebidoEm: string;
+  whatsappUrl: string;
+  mensagem: string;
+  resumo: {
+    nome: string;
+    produtos: string[];
+    objetivo: string;
+    proximoPasso: string;
+  };
+}
+
+/**
+ * Creates a standardized protocol and WhatsApp handoff response payload.
+ */
+export function buildDiagnosticResult(data: ValidatedContactInput): DiagnosticResult {
+  const protocolo = `BJB-${Date.now().toString(36).toUpperCase().slice(-6)}`;
+  return {
+    ok: true,
+    protocolo,
+    recebidoEm: new Date().toISOString(),
+    whatsappUrl: buildWhatsAppUrl(data),
+    mensagem: buildWhatsAppMessage(data),
+    resumo: {
+      nome: data.nome,
+      produtos: data.produtosNomes,
+      objetivo: data.objetivo,
+      proximoPasso:
+        "Conversa iniciada no WhatsApp com os desenvolvedores para entender suas dores e desenhar a melhor proposta.",
+    },
+  };
+}
