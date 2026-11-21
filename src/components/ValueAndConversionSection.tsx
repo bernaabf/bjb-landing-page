@@ -16,6 +16,7 @@ import {
 } from "@/lib/motion";
 import {
   buildDiagnosticResult,
+  requestDiagnosticWithFallback,
   validateContactInput,
   type DiagnosticResult,
 } from "@/lib/whatsapp";
@@ -354,6 +355,7 @@ export function ConversionSection() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (submitting) return;
     setFormError(null);
     setFieldErrors({});
 
@@ -370,40 +372,13 @@ export function ConversionSection() {
     setSubmitting(true);
 
     try {
-      const response = await fetch("/api/diagnostico", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nome: validation.data.nome,
-          produtos: validation.data.produtos,
-          objetivo: validation.data.objetivo,
-        }),
-      });
-
-      const payload = (await response.json()) as Partial<DiagnosticResult> & {
-        error?: string;
-        fieldErrors?: Record<string, string>;
-      };
-
-      if (!response.ok) {
-        if (response.status === 422 && payload.fieldErrors) {
-          setFormError(
-            payload.error ?? "Revise os campos destacados antes de continuar para o WhatsApp."
-          );
-          setFieldErrors(payload.fieldErrors);
-          return;
-        }
-        setResult(localFallback);
+      const outcome = await requestDiagnosticWithFallback(validation.data, localFallback);
+      if (outcome.status === "validation_error") {
+        setFormError(outcome.error);
+        setFieldErrors(outcome.fieldErrors);
         return;
       }
-
-      if (payload.ok && payload.resumo && payload.protocolo && payload.whatsappUrl) {
-        setResult(payload as DiagnosticResult);
-      } else {
-        setResult(localFallback);
-      }
-    } catch {
-      setResult(localFallback);
+      setResult(outcome.result);
     } finally {
       setSubmitting(false);
     }
@@ -589,14 +564,20 @@ export function ConversionSection() {
                       onChange={(e) => setNome(e.target.value)}
                       placeholder="Ex.: Mariana Alves"
                       aria-invalid={Boolean(fieldErrors.nome)}
+                      aria-describedby={fieldErrors.nome ? "diag-nome-error" : undefined}
                       className="mt-2 h-11 w-full rounded-lg border border-[#DDD1B9]/25 bg-[#211914]/80 px-3.5 text-[15px] text-[#EEE7D8] placeholder:text-[#DDD1B9]/70 transition-colors duration-200 focus:border-[#D9A566] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D9A566]"
                     />
                     {fieldErrors.nome && (
-                      <p className="mt-1.5 text-[13px] text-[#D9A566]">{fieldErrors.nome}</p>
+                      <p id="diag-nome-error" className="mt-1.5 text-[13px] text-[#D9A566]">
+                        {fieldErrors.nome}
+                      </p>
                     )}
                   </div>
 
-                  <fieldset>
+                  <fieldset
+                    aria-invalid={Boolean(fieldErrors.produtos)}
+                    aria-describedby={fieldErrors.produtos ? "diag-produtos-error" : undefined}
+                  >
                     <legend className="text-[13.5px] font-medium text-[#EEE7D8]">
                       Qual tipo de produto você busca?
                     </legend>
@@ -630,7 +611,9 @@ export function ConversionSection() {
                       })}
                     </div>
                     {fieldErrors.produtos && (
-                      <p className="mt-2 text-[13px] text-[#D9A566]">{fieldErrors.produtos}</p>
+                      <p id="diag-produtos-error" className="mt-2 text-[13px] text-[#D9A566]">
+                        {fieldErrors.produtos}
+                      </p>
                     )}
                   </fieldset>
 
@@ -650,10 +633,13 @@ export function ConversionSection() {
                       onChange={(e) => setObjetivo(e.target.value)}
                       placeholder="Conte brevemente o que você busca desenvolver ou melhorar. As dores e detalhes técnicos alinharemos diretamente na conversa."
                       aria-invalid={Boolean(fieldErrors.objetivo)}
+                      aria-describedby={fieldErrors.objetivo ? "diag-objetivo-error" : undefined}
                       className="mt-2 w-full rounded-lg border border-[#DDD1B9]/25 bg-[#211914]/80 p-3.5 text-[15px] leading-[1.5] text-[#EEE7D8] placeholder:text-[#DDD1B9]/70 transition-colors duration-200 focus:border-[#D9A566] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D9A566]"
                     />
                     {fieldErrors.objetivo && (
-                      <p className="mt-1.5 text-[13px] text-[#D9A566]">{fieldErrors.objetivo}</p>
+                      <p id="diag-objetivo-error" className="mt-1.5 text-[13px] text-[#D9A566]">
+                        {fieldErrors.objetivo}
+                      </p>
                     )}
                   </div>
 
@@ -661,12 +647,12 @@ export function ConversionSection() {
                     <span className="text-[13px] text-[#DDD1B9]/75">
                       Atendimento direto com os desenvolvedores no WhatsApp
                     </span>
-                    <Magnetic strength={0.18} maxDistance={7}>
+                    <Magnetic className="w-full max-w-full sm:w-auto" strength={0.18} maxDistance={7}>
                       <button
                         type="submit"
                         disabled={submitting}
                         data-cursor="action"
-                        className="bjb-roll-link inline-flex min-h-12 items-center justify-center rounded-full bg-[#D9A566] px-6 py-2.5 text-[14px] sm:px-7 sm:text-[15px] font-medium whitespace-nowrap text-[#2A211B] transition-[background-color,opacity,transform] duration-200 hover:bg-[#E5B87E] active:scale-[0.98] disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#EEE7D8]"
+                        className="bjb-roll-link inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#D9A566] px-6 py-2.5 text-center text-[14px] font-medium text-[#2A211B] transition-[background-color,opacity,transform] duration-200 hover:bg-[#E5B87E] active:scale-[0.98] disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#EEE7D8] sm:w-auto sm:whitespace-nowrap sm:px-7 sm:text-[15px]"
                       >
                         {submitting ? (
                           <span className="inline-flex items-center gap-2">

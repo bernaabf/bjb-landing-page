@@ -150,3 +150,89 @@ export function buildDiagnosticResult(data: ValidatedContactInput): DiagnosticRe
     },
   };
 }
+
+export type DiagnosticSubmissionOutcome =
+  | { status: "ok"; result: DiagnosticResult }
+  | { status: "fallback"; result: DiagnosticResult }
+  | { status: "validation_error"; error: string; fieldErrors: Record<string, string> };
+
+function isDiagnosticResult(value: unknown): value is DiagnosticResult {
+  if (!value || typeof value !== "object") return false;
+  const record = value as Record<string, unknown>;
+  if (
+    record.ok !== true ||
+    typeof record.protocolo !== "string" ||
+    !record.protocolo ||
+    typeof record.whatsappUrl !== "string" ||
+    !record.whatsappUrl ||
+    typeof record.mensagem !== "string" ||
+    !record.mensagem ||
+    !record.resumo ||
+    typeof record.resumo !== "object"
+  ) {
+    return false;
+  }
+
+  const resumo = record.resumo as Record<string, unknown>;
+  return (
+    typeof resumo.nome === "string" &&
+    typeof resumo.objetivo === "string" &&
+    typeof resumo.proximoPasso === "string" &&
+    Array.isArray(resumo.produtos) &&
+    resumo.produtos.every((item) => typeof item === "string")
+  );
+}
+
+/**
+ * Registers the contact request with a timeout and guarantees a valid fallback handoff payload.
+ */
+export async function requestDiagnosticWithFallback(
+  data: ValidatedContactInput,
+  localFallback: DiagnosticResult,
+  fetchFn: typeof fetch = fetch,
+  timeoutMs = 3000
+): Promise<DiagnosticSubmissionOutcome> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const response = await fetchFn("/api/diagnostico", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      signal: controller.signal,
+      body: JSON.stringify({
+        nome: data.nome,
+        produtos: data.produtos,
+        objetivo: data.objetivo,
+      }),
+    });
+
+    const payload = (await response.json()) as {
+      error?: string;
+      fieldErrors?: Record<string, string>;
+    };
+
+    if (!response.ok) {
+      if (response.status === 422 && payload.fieldErrors) {
+        return {
+          status: "validation_error",
+          error:
+            payload.error ??
+            "Revise os campos destacados antes de continuar para o WhatsApp.",
+          fieldErrors: payload.fieldErrors,
+        };
+      }
+      return { status: "fallback", result: localFallback };
+    }
+
+    if (isDiagnosticResult(payload)) {
+      return { status: "ok", result: payload };
+    }
+
+    return { status: "fallback", result: localFallback };
+  } catch {
+    return { status: "fallback", result: localFallback };
+  } finally {
+    clearTimeout(timer);
+  }
+}

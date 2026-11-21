@@ -4,8 +4,10 @@ import {
   PRODUCT_LABELS,
   PRODUCT_OPTIONS,
   WHATSAPP_PHONE,
+  buildDiagnosticResult,
   buildWhatsAppMessage,
   buildWhatsAppUrl,
+  requestDiagnosticWithFallback,
   validateContactInput,
 } from "../src/lib/whatsapp.ts";
 
@@ -114,5 +116,113 @@ describe("WhatsApp contact domain helpers", () => {
     assert.ok(url.startsWith(expectedPrefix));
     const encodedPart = url.slice(expectedPrefix.length);
     assert.equal(decodeURIComponent(encodedPart), buildWhatsAppMessage(input));
+  });
+
+  test("requestDiagnosticWithFallback aborts slow fetch and returns local fallback", async () => {
+    const data = {
+      nome: "Mariana Alves",
+      produtos: ["automacao"] as const,
+      produtosNomes: ["Automação de atendimento"],
+      objetivo: "Automatizar atendimento inicial no WhatsApp.",
+    };
+    const localFallback = buildDiagnosticResult({
+      ...data,
+      produtos: [...data.produtos],
+    });
+
+    const hangingFetch: typeof fetch = (_input, init) =>
+      new Promise((_resolve, reject) => {
+        init?.signal?.addEventListener("abort", () => {
+          reject(new DOMException("Aborted", "AbortError"));
+        });
+      });
+
+    const outcome = await requestDiagnosticWithFallback(
+      { ...data, produtos: [...data.produtos] },
+      localFallback,
+      hangingFetch,
+      25
+    );
+
+    assert.equal(outcome.status, "fallback");
+    if (outcome.status === "fallback") {
+      assert.equal(outcome.result.whatsappUrl, localFallback.whatsappUrl);
+    }
+  });
+
+  test("requestDiagnosticWithFallback returns validation_error on HTTP 422 with fieldErrors", async () => {
+    const data = {
+      nome: "Mariana Alves",
+      produtos: ["automacao" as const],
+      produtosNomes: ["Automação de atendimento"],
+      objetivo: "Automatizar atendimento inicial no WhatsApp.",
+    };
+    const localFallback = buildDiagnosticResult(data);
+
+    const mockFetch: typeof fetch = async () =>
+      new Response(
+        JSON.stringify({
+          error: "Revise os campos.",
+          fieldErrors: { nome: "Nome inválido." },
+        }),
+        { status: 422, headers: { "Content-Type": "application/json" } }
+      );
+
+    const outcome = await requestDiagnosticWithFallback(data, localFallback, mockFetch, 500);
+    assert.equal(outcome.status, "validation_error");
+    if (outcome.status === "validation_error") {
+      assert.equal(outcome.error, "Revise os campos.");
+      assert.deepEqual(outcome.fieldErrors, { nome: "Nome inválido." });
+    }
+  });
+
+  test("requestDiagnosticWithFallback validates complete server payload and falls back when partial", async () => {
+    const data = {
+      nome: "Mariana Alves",
+      produtos: ["dashboards" as const],
+      produtosNomes: ["Dashboards"],
+      objetivo: "Acompanhar indicadores operacionais.",
+    };
+    const localFallback = buildDiagnosticResult(data);
+
+    const partialFetch: typeof fetch = async () =>
+      new Response(
+        JSON.stringify({
+          ok: true,
+          protocolo: "BJB-123",
+          whatsappUrl: localFallback.whatsappUrl,
+          resumo: { nome: "Mariana Alves", produtos: "invalid-not-array" },
+        }),
+        { status: 201, headers: { "Content-Type": "application/json" } }
+      );
+
+    const partialOutcome = await requestDiagnosticWithFallback(
+      data,
+      localFallback,
+      partialFetch,
+      500
+    );
+    assert.equal(partialOutcome.status, "fallback");
+
+    const validServerPayload = {
+      ...localFallback,
+      protocolo: "BJB-SERVER",
+    };
+    const validFetch: typeof fetch = async () =>
+      new Response(JSON.stringify(validServerPayload), {
+        status: 201,
+        headers: { "Content-Type": "application/json" },
+      });
+
+    const validOutcome = await requestDiagnosticWithFallback(
+      data,
+      localFallback,
+      validFetch,
+      500
+    );
+    assert.equal(validOutcome.status, "ok");
+    if (validOutcome.status === "ok") {
+      assert.equal(validOutcome.result.protocolo, "BJB-SERVER");
+    }
   });
 });
